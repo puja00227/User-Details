@@ -1,24 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+import { SnackbarProvider } from 'notistack';
+import Home from './pages/Home';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Create from './pages/Create';
+import View from './pages/View';
+import Update from './pages/Update';
+import Delete from './pages/Delete';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <SnackbarProvider>
+        <div>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/users/create" element={<Create />} />
+            <Route exact path="/users/view/:id" element={<View />} />
+            <Route exact path="/users/update/:id" element={<Update />} />
+            <Route exact path="/users/delete/:id" element={<Delete />} />
+            <Route exact path="/signin" element={<SignIn />} />
+            <Route exact path="/signup" element={<SignUp />} />
+          </Routes>
+        </div>
+      </SnackbarProvider>
+    </Router>
   );
 }
 
